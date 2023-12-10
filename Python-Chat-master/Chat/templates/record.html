@@ -7,8 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI语音提问&回答</title>
-    <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 
 <body>
@@ -16,7 +15,9 @@
     <h1 style="font-family: 楷体">AI语音提问&回答</h1>
     <div class="content">
         <textarea id="text-input" placeholder="人工智能语音助手回答："></textarea>
-        <button id="record-button">开始录音</button>
+        <button id="record-button" onclick="btnSendData()">开始录音</button>
+        <p id="countdown">0</p>
+
     </div>
 
     <div class="content">
@@ -38,7 +39,9 @@
             contentType: 'application/json',
             data: JSON.stringify(input),
             success: function (res) {
+
                 $('#text-input').val(res.answer)
+
             },
             error: function () {
                 alert('操作失败')
