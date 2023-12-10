@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI语音提问&回答</title>
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
 <body>
-<div id="container">
-    <h1 style="display: flex;align-content: center;justify-content: center">录音测试</h1>
+<div class="container">
+    <h1 style="font-family: 楷体">AI语音提问&回答</h1>
+    <div class="content">
+        <textarea id="text-input" placeholder="人工智能语音助手回答："></textarea>
+        <button id="record-button">开始录音</button>
+    </div>
 
-    <form id="form" style="display:flex;align-content: center;justify-content: center">
-        <div>
-            <input type="text" id="text"/>
-
-            <button type="button" value="开始录音" onclick="btnSendData()">录音</button></br>
-            <textarea id="ans" style="margin-top: 10px"></textarea>
-        </div>
-    </form>
-
+    <div class="content">
+        <h4 style="color: blue;">点击“开始录音”按钮,向AI助手提问</h4>
+    </div>
 </div>
 <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
     function btnSendData() {
         //清空文本
-        $("text").text("")
+        $("#text-input").val("")
         let input = {
             'order': '1',
         };
@@ -29,8 +38,7 @@
             contentType: 'application/json',
             data: JSON.stringify(input),
             success: function (res) {
-                $('#ans').val(res.answer)
-
+                $('#text-input').val(res.answer)
             },
             error: function () {
                 alert('操作失败')

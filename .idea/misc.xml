@@ -3,5 +3,5 @@
   <component name="Black">
     <option name="sdkName" value="expar" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="expar" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="d2l-pytorch" project-jdk-type="Python SDK" />
 </project>
