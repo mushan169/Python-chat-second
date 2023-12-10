@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div id="container">
+    <h1 style="display: flex;align-content: center;justify-content: center">录音测试</h1>
+
+    <form id="form" style="display:flex;align-content: center;justify-content: center">
+        <div>
+            <input type="text" id="text"/>
+
+            <button type="button" value="开始录音" onclick="btnSendData()">录音</button></br>
+            <textarea id="ans" style="margin-top: 10px"></textarea>
+        </div>
+    </form>
+
+</div>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    function btnSendData() {
+        //清空文本
+        $("text").text("")
+        let input = {
+            'order': '1',
+        };
+
+        $.ajax({
+            url: '/record',
+            type: 'post',
+            contentType: 'application/json',
+            data: JSON.stringify(input),
+            success: function (res) {
+                $('#ans').val(res.answer)
+
+            },
+            error: function () {
+                alert('操作失败')
+            }
+        });
+    }
+</script>
+</body>
+</html>

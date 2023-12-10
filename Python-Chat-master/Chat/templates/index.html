@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recording</title>
+</head>
+<body>
+
+<div id="container">
+    <h1 style="display: flex;align-content: center;justify-content: center">录音测试</h1>
+
+    <form id="form" style="display:flex;align-content: center;justify-content: center">
+        <div>
+            <input type="text" id="text"/>
+
+            <button type="button" value="开始录音" onclick="submit()">录音</button>
+        </div>
+    </form>
+
+</div>
+</body>
+
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+        function submit() {
+            var input = {
+                'name': 'tom',
+                'password': '123456'
+            };
+            $.ajax({
+                url: '/record',
+                type: 'post',
+                contentType: 'application/json',
+                data: JSON.stringify(input),
+                success: function (res) {
+                    console.log(res);
+                }
+            });
+        }
+    </script>
+</html>
