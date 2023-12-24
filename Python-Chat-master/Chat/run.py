@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import Display
 import threading
 import Playing
+import Global_variable
 
 app = Flask(__name__, static_folder='static')
 
@@ -9,7 +10,7 @@ app = Flask(__name__, static_folder='static')
 @app.route('/')
 # @app.route('/back')
 def user():
-    return render_template('record.html')
+    return render_template('talk.html')
 
 
 @app.route('/record', methods=['POST', 'GET'])
@@ -20,20 +21,16 @@ def login():
     # 判断录音指令
     if json['order'] == '1':
         # 录音对话开始
-        chatBegin = Display.Display(json['order'])
-        # 获取返回的文字
-        answer = chatBegin.on_recording_click()
+        Display.Display(json['order'])
 
-        answer_content = answer['content']['text']
         print("success")
-        print(answer_content)
 
         # 开启另外一个线程，播放声音
-        audio_thread = threading.Thread(target=Playing.playing(answer_content))
+        audio_thread = threading.Thread(target=Playing.playing(Global_variable.AIOutputMessage))
         audio_thread.start()
 
         # 转换为json格式,将对话的内容传到前端
-        return jsonify({'answer': answer_content})
+        return jsonify({'user': Global_variable.UserInputMessage, 'ai': Global_variable.AIOutputMessage})
 
 
 if __name__ == '__main__':

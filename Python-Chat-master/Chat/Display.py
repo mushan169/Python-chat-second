@@ -19,10 +19,6 @@ class Display(object):
 
         record_audio_thread.join()
 
-        with open('ans.json', 'r') as f:
-            ans = json.load(f)
-        return ans
-
     # 播放声音
     def on_playing_click(self):
         play_audio_thread = threading.Thread(target=Playing.playing)

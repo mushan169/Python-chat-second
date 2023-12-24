@@ -5,6 +5,7 @@ import pyaudio
 import wave
 import IdentifyVerbal
 import langchain_getInfo
+import Global_variable
 
 KEYWORD = "推荐"
 filename = "input_voice_file.wav"
@@ -77,10 +78,8 @@ def recording():
 
     # 得到回答
     chatResult = chat(result)
-    print(chatResult)
-    ans = {'content': chatResult}
-    with open('ans.json', 'w') as f:
-        json.dump(ans, f)
+
+    Global_variable.UserInputMessage = context
+    Global_variable.AIOutputMessage = chatResult
 
     print(chatResult)
-

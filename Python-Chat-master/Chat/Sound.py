@@ -6,7 +6,7 @@ def get(msg):
     resp = reqt.get(url)
     if resp.json()['text'] == "获取成功！":
         content = reqt.get(resp.json()['music']).content
-        with open("path_of_file.wav", 'wb') as f:
+        with open("input_voice_file.wav", 'wb') as f:
             f.write(content)
     else:
         print("Fail!")
