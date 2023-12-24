@@ -30,7 +30,8 @@ def login():
         audio_thread.start()
 
         # 转换为json格式,将对话的内容传到前端
-        return jsonify({'user': Global_variable.UserInputMessage, 'ai': Global_variable.AIOutputMessage})
+        return jsonify({'user': Global_variable.UserInputMessage, 'ai': Global_variable.AIOutputMessage,
+                        'emotion': Global_variable.Emotion})
 
 
 if __name__ == '__main__':

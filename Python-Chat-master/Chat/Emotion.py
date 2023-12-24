@@ -3,7 +3,7 @@ from modelscope.utils.constant import Tasks
 
 
 # 情绪识别
-class TextClassification:
+class EmotionClassifier:
     task = Tasks.text_classification
     model_name = 'damo/nlp_structbert_emotion-classification_chinese-base'
     model_revision = 'v1.0.0'
@@ -22,6 +22,6 @@ class TextClassification:
 
 
 if __name__ == '__main__':
-    text_classification = TextClassification()
+    text_classification = EmotionClassifier()
     result = text_classification.classify('新年快乐！')
     print(result)

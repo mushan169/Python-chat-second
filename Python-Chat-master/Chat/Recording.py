@@ -1,15 +1,11 @@
-# define PY_SSIZE_T_CLEAN
-import json
-
+import Emotion
 import pyaudio
 import wave
 import IdentifyVerbal
 import langchain_getInfo
 import Global_variable
 
-KEYWORD = "推荐"
 filename = "input_voice_file.wav"
-cache = {}
 
 
 def remove_whitespace_and_dashes(input_string):
@@ -79,6 +75,7 @@ def recording():
     # 得到回答
     chatResult = chat(result)
 
+    Global_variable.Emotion = Emotion.EmotionClassifier.classify(context)
     Global_variable.UserInputMessage = context
     Global_variable.AIOutputMessage = chatResult
 

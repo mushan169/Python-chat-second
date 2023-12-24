@@ -1,2 +1,3 @@
 UserInputMessage = ''
 AIOutputMessage = ''
+Emotion = ''

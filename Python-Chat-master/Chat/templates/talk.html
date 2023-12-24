@@ -1,60 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Chat</title>
-  <link rel="stylesheet" href="../static/talk.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat</title>
+    <link rel="stylesheet" href="../static/talk.css">
 </head>
 <body>
 
 <div class="chat-container">
-  <h2 class="chat-title">AI语音提问&回答</h2>
-  <ul class="chat" id="chat"></ul>
-<!--  <input type="tex  t" id="userInput" placeholder="Type a message...">-->
+    <h2 class="chat-title">AI语音提问&回答</h2>
+    <ul class="chat" id="chat"></ul>
+    <!--  <input type="tex  t" id="userInput" placeholder="Type a message...">-->
 
-  <button onclick="sendMessage()" style="margin-top: 100px">Send</button>
+    <button onclick="sendMessage()" style="margin-top: 100px">Send</button>
 </div>
 <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
-  function sendMessage() {
+    function sendMessage() {
         let input = {
             'order': '1'
         };
-        let userMessage,aiMessage;
-<!--    var userInput = document.getElementById("userInput").value;-->
-<!--    if (userInput.trim() === "") return;-->
-<!--    var chat = document.getElementById("chat");-->
-            $.ajax({
+        let userMessage, aiMessage, emotion;
+        <!--    var userInput = document.getElementById("userInput").value;-->
+        <!--    if (userInput.trim() === "") return;-->
+        <!--    var chat = document.getElementById("chat");-->
+        $.ajax({
             url: '/record',
             type: 'post',
             contentType: 'application/json',
             data: JSON.stringify(input),
             success: function (res) {
-                userMessage=res.user
-                aiMessage=res.ai
+                userMessage = res.user
+                aiMessage = res.ai
+                emotion = res.emotion
             },
             error: function () {
                 alert('操作失败')
             }
         });
 
-    //加入用户消息
+        //加入用户消息
 
-    var userMessageElement = document.createElement("li");
-    userMessageElement.className = "message";
-    userMessageElement.innerHTML = '<div class="user-message">' + userMessage + '</div>';
-    chat.appendChild(userMessageElement);
+        var userMessageElement = document.createElement("li");
+        userMessageElement.className = "message";
+        userMessageElement.innerHTML = '<div class="user-message">' + userMessage + emotion + '</div>';
+        chat.appendChild(userMessageElement);
 
-    //加入AI回答
-    //var aiResponse =  + userInput; // Replace with actual AI response
-    var aiMessageElement = document.createElement("li");
-    aiMessageElement.className = "message";
-    aiMessageElement.innerHTML = '<div class="ai-message">' + "AI: Your message was: "+aiMessage + '</div>';
-    chat.appendChild(aiMessageElement);
+        //加入AI回答
+        //var aiResponse =  + userInput; // Replace with actual AI response
+        var aiMessageElement = document.createElement("li");
+        aiMessageElement.className = "message";
+        aiMessageElement.innerHTML = '<div class="ai-message">' + "AI: Your message was: " + aiMessage + '</div>';
+        chat.appendChild(aiMessageElement);
 
 
-  }
+    }
 </script>
 
 </body>
