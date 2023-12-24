@@ -8,7 +8,7 @@ import Playing
 import langchain_getInfo
 
 KEYWORD = "推荐"
-filename = "path_of_file.wav"
+filename = "input_voice_file.wav"
 cache = {}
 
 
@@ -72,22 +72,6 @@ def recording():
     verbal = IdentifyVerbal.IdentifyVerbal()
     context = verbal(filename)
 
-    # if KEYWORD in context:
-    #     chat = Answer.Chat()
-    #     require_ls = chat(context)
-    # else:
-    #     getKey = langchain_getInfo.GetKeyOfMeal()
-    #
-    #     recipe_name = getKey(context)
-    #     if recipe_name in cache.keys():
-    #         print('yes')
-    #         result = cache[recipe_name]
-    #     else:
-    #         print('no')
-    #         getRecipe = langchain_getInfo.GetRecipe()
-    #         result = remove_whitespace_and_dashes(getRecipe(recipe_name))
-    #         cache[recipe_name] = result
-    #     require_ls = result.split("\n")
     chat = langchain_getInfo.GetChatContent()
 
     result = remove_whitespace_and_dashes(context)
@@ -98,9 +82,6 @@ def recording():
     ans = {'content': chatResult}
     with open('ans.json', 'w') as f:
         json.dump(ans, f)
-    # require_ls = result.split("\n")
+
     print(chatResult)
 
-    #Playing.playing(chatResult)
-
-    # 返回回答结果
