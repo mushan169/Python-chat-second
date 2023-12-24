@@ -4,7 +4,6 @@ import json
 import pyaudio
 import wave
 import IdentifyVerbal
-import Playing
 import langchain_getInfo
 
 KEYWORD = "推荐"

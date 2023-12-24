@@ -33,6 +33,7 @@ class GetChatContent:
         return chatContent
 
 
+# 测试
 if __name__ == '__main__':
     verbal = IdentifyVerbal.IdentifyVerbal()
     res = verbal(
