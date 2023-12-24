@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<html>
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,7 +15,6 @@
         <textarea id="text-input" placeholder="人工智能语音助手回答："></textarea>
         <button id="record-button" onclick="btnSendData()">开始录音</button>
         <p id="countdown">0</p>
-
     </div>
 
     <div class="content">
@@ -29,19 +26,20 @@
     function btnSendData() {
         //清空文本
         $("#text-input").val("")
+
+        //设定对话开始的输入值
         let input = {
             'order': '1',
         };
 
+        //ajax提交请求
         $.ajax({
             url: '/record',
             type: 'post',
             contentType: 'application/json',
             data: JSON.stringify(input),
             success: function (res) {
-
                 $('#text-input').val(res.answer)
-
             },
             error: function () {
                 alert('操作失败')

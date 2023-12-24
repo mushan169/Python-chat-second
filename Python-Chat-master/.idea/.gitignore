@@ -6,3 +6,5 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+#项目运行后产生的wav格式音频文件
+*.wav

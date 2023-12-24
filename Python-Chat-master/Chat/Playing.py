@@ -1,7 +1,9 @@
 import pygame
 import Sound
 
-filename = 'path_of_file.wav'
+filename = 'input_voice_file.wav'
+
+
 def playing(msg):
     Sound.get(msg)
     # 初始化pygame
